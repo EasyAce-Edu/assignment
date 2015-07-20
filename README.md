@@ -7,6 +7,7 @@ Use Backbone.js to create a simple single page web app that let users find all c
 ### Goal
 - Show that you can learn by yourself
 - Show that you know how RESTful APIs work and are able to use them in your web app
+- Show that you know how to work with GitHub
 - Showcase your skills to work with HTML, CSS, and JavaScript
 - Get your hands dirty with front-end MV* and JavaScript frameworks
 - Have some basic understanding of the kind of front-end developing work we are doing at EasyAce
@@ -15,7 +16,9 @@ Use Backbone.js to create a simple single page web app that let users find all c
 We don't really use Backbone.js at EasyAce, but it's simple, light weight, easy to learn, and has the basic tools/features of a front-end MV* framework. If you can use Backbone.js, learning a more complicated, full flavor framework becomes much easier.
 
 ### Requirements
-
+- You must use Backbone.js as the framework to build your single page web app
+- You must use UW Open Data API as the only data source (If you don't have an API key, create one)
+- You must use Backbone's Collection and Model to communicate with UW Open Data API (e.g. no direct jQuery Ajax calls)
 
 ### Resources
 
