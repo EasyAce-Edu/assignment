@@ -25,6 +25,9 @@ Use Backbone.js to create a simple single page web app that let users find all c
 - You must handle events in your Backbone views, do not write jQuery code to bind event listener manually
 - You must use some kind of local storage that a user can create a list, add courses to it, save it, and load it back in future browser sessions (close/reopen browser)
 - Your web app must be able to store multiple lists, although you don't need to worry about security
+- Feel free to use file/module loader, you may get a bonus for better structure of your code
+- Feel free to use any 3rd party library/package you want
+- Feel free to design your UI, you have the total authority, and of course the elegancy/beautifulness of your UI will be evaluated
 
 ### Resources
 
