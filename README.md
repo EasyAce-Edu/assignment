@@ -30,6 +30,7 @@ Use Backbone.js to create a simple single page web app that let users find all c
 - Feel free to design your UI, you have the total authority, and of course the elegancy/beautifulness/usability of your UI will be evaluated
 
 ### Resources
-
+[Backbone.js](http://www.backbonejs.org)
+[UW Open Data API](https://api.uwaterloo.ca)
 
 ### Submission
