@@ -11,8 +11,10 @@ Use Backbone.js to create a simple single page web app that let users find all c
 - Get your hands dirty with front-end MV* and JavaScript frameworks
 - Have some basic understanding of the kind of front-end developing work we are doing at EasyAce
 
+### Note
+We don't really use Backbone.js at EasyAce, but it's simple, light weight, easy to learn, and has the basic tools/features of a front-end MV* framework. If you can use Backbone.js, learning a more complicated, full flavor framework becomes much easier.
 
-### Requirement
+### Requirements
 
 
 ### Resources
