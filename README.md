@@ -27,7 +27,7 @@ Use Backbone.js to create a simple single page web app that let users find all c
 - Your web app must be able to store multiple lists, although you don't need to worry about security
 - Feel free to use file/module loader, you may get a bonus for better structure of your code
 - Feel free to use any 3rd party library/package you want
-- Feel free to design your UI, you have the total authority, and of course the elegancy/beautifulness of your UI will be evaluated
+- Feel free to design your UI, you have the total authority, and of course the elegancy/beautifulness/usability of your UI will be evaluated
 
 ### Resources
 
