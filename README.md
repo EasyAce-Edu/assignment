@@ -2,9 +2,12 @@
 Front-end web dev assignment
 
 ### Task
-Use Backbone.js to create a simple single page web app that let users find all course offerings for next term (Fall 2015) by accessing data from UW Open API, and create a persistent short list of selected courses that he/she is interested in for future reviewing.
+Use Backbone.js to create a simple single page web app that let users find all course offerings for next term (Fall 2015) by accessing data from UW Open API, and create persistent lists of selected courses that he/she is interested in for future reference.
 
 ### Goal
+- Show that you can learn by yourself
+- Showcase your skills to work with HTML, CSS, and JavaScript
+- Get your hands wet with front-end MV* and JavaScript frameworks
 
 
 ### Requirement
