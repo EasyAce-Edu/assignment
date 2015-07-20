@@ -6,8 +6,10 @@ Use Backbone.js to create a simple single page web app that let users find all c
 
 ### Goal
 - Show that you can learn by yourself
+- Show that you know how RESTful APIs work and are able to use them in your web app
 - Showcase your skills to work with HTML, CSS, and JavaScript
-- Get your hands wet with front-end MV* and JavaScript frameworks
+- Get your hands dirty with front-end MV* and JavaScript frameworks
+- 
 
 
 ### Requirement
