@@ -9,7 +9,7 @@ Use Backbone.js to create a simple single page web app that let users find all c
 - Show that you know how RESTful APIs work and are able to use them in your web app
 - Showcase your skills to work with HTML, CSS, and JavaScript
 - Get your hands dirty with front-end MV* and JavaScript frameworks
-- 
+- Have some basic understanding of the kind of front-end developing work we are doing at EasyAce
 
 
 ### Requirement
