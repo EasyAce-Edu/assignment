@@ -18,7 +18,7 @@ We don't really use Backbone.js at EasyAce, but it's simple, light weight, easy 
 ### Requirements
 - You must use Backbone.js as the framework to build your single page web app
 - You must use UW Open Data API as the only data source (If you don't have an API key, create one)
-- You must use Backbone's Collection and Model to communicate with UW Open Data API (e.g. no direct jQuery Ajax calls)
+- You must use Backbone's Collection and Model to communicate with the API (e.g. no direct jQuery Ajax calls)
 
 ### Resources
 
