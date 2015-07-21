@@ -15,7 +15,7 @@ Use Backbone.js to create a simple single page web app that let users find all c
 ### Notes
 - We don't really use Backbone.js at EasyAce, but it's simple, light weight, easy to learn, and has the basic tools/features of a front-end MV* framework. If you can use Backbone.js, learning a more complicated, full flavor framework becomes much easier.
 - If you have questions, try to look them up on Backbone website first, Stackoverflow/Google second, and ask us on GitHub last. You want to prove you are good self learners, so we are no babysitters.
-- But if you need clarification of this assignment, feel free to post it on GitHub, we will answer asap.
+- But if you need clarification of this assignment, feel free to post it on GitHub, we will answer asap. One aspect of this assignment is to show you how to communicate in a team and on GitHub.
 - You should be able to code your project locally without container, but it might be easier to serve your static files from a Nginx or Apache.
 
 ### Requirements
