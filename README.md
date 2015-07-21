@@ -33,6 +33,7 @@ Use Backbone.js to create a simple single page web app that let users find all c
 - Feel free to use any 3rd party library/package you want
 - Feel free to design your UI, you have the total authority, and of course the elegancy/beautifulness/usability of your UI will be evaluated
 - Feel free to add extra features, this is an open end task, take advantage of your freedom
+- You can either link all your resources locally, all from some online vendors, the testing machine will have internet access
 
 ### Resources
 - [Backbone.js](http://www.backbonejs.org)
