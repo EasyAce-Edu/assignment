@@ -42,4 +42,4 @@ Use Backbone.js to create a simple single page web app that let users find all c
 Once you finish this assignment, you must submit your code as a pull request to this repo. If you don't have GitHub account, please create one.
 
 
-Note that your submission should only contain static files (html, css, js, templates), it will be tested by us hosting on Nginx
+Note that your submission should only contain static files (html, css, js, templates), it will be tested by us hosting on a Nginx powered server.
