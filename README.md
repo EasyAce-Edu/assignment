@@ -38,7 +38,7 @@ Use Backbone.js to create a simple single page web app that let users find all c
 ### Resources
 - [Backbone.js](http://www.backbonejs.org)
 - [UW Open Data API](https://api.uwaterloo.ca)
-- A simple sample of Backbone web app can be found inside the example folder of this repo
+- A simple example of Backbone web app can be found inside the example folder of this repo
 - A short video explains what we want for this app can be found [here](https://www.youtube.com/watch?v=MVD65pKzfiw)
 
 ### Submission
