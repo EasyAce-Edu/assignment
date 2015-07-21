@@ -33,12 +33,13 @@ Use Backbone.js to create a simple single page web app that let users find all c
 - Feel free to use any 3rd party library/package you want
 - Feel free to design your UI, you have the total authority, and of course the elegancy/beautifulness/usability of your UI will be evaluated
 - Feel free to add extra features, this is an open end task, take advantage of your freedom
+- You can either link all your resources locally, all from some online vendors, the testing machine will have internet access
 
 ### Resources
 - [Backbone.js](http://www.backbonejs.org)
 - [UW Open Data API](https://api.uwaterloo.ca)
-- A simple sample of Backbone web app can be found inside the example folder of this repo
-- A short video explains what we want for this app can be found here
+- A simple example of Backbone web app can be found inside the example folder of this repo
+- A short video explains what we want for this app can be found [here](https://www.youtube.com/watch?v=MVD65pKzfiw)
 
 ### Submission
 Once you finish this assignment, you must submit your code as a pull request to this repo. If you don't have GitHub account, please create one.
