@@ -1,0 +1,37 @@
+#leftContent {
+  border-right:1px solid #dddddd;
+  height: 85vh;
+}
+
+#midContent {
+  height: 85vh;
+}
+
+#rightContent {
+  height: 85vh;
+  border-left:1px solid #dddddd; 
+}
+#courses {
+  height: 80%;
+  overflow:auto;
+  margin: 30px 30px 30px 30px;
+}
+
+#scheduleTable {
+  height: 80%;
+  overflow:auto;
+  margin: auto auto;
+  border: transparent;
+}
+
+#scheduleTable td {
+  width: 135px;
+}
+
+#list {
+  height: 80%;
+  overflow:auto;
+  margin: 30px 30px 30px 30px;
+}
+
+

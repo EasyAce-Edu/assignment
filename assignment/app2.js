@@ -1,5 +1,5 @@
-$(function(){
-	// collection for dropdown
+$(function (){
+	// collection for dropdownlist
 	var SubjectList = Backbone.Collection.extend({
 		url: 'https://api.uwaterloo.ca/v2/terms/1159/courses.json?key=138ff53a6ec91e06bc52ff9cfedb2780',
 		parse: function (response) {
@@ -34,8 +34,20 @@ $(function(){
 		}
 	});
 
+	var CustomList = Backbone.Collection.extend({
+		localStorage: new Backbone.LocalStorage("customList")
+	});
+	var customList = new CustomList();
+	var SubjectView = Backbone.View.extend({
+		tagName: "option",
+		render: function () {
+			this.$el.html(this.model.attributes.subject);
+			return this;
+		},
+	});
+
 	var SubjectListView = Backbone.View.extend({
-		tagName: "select",
+		el: "#dropdown",
 		events: {
 			"change" : "showCourses"
 		},
@@ -51,7 +63,6 @@ $(function(){
 				var itemView= new SubjectView({model:item});
 				els.push(itemView.render().el);
 			});
-			this.$el.html("<option disabled selected>-- select a subject -- </option>");
 			this.$el.append(els);
 			$("#dropdown").append(this.el);
 		},
@@ -59,34 +70,6 @@ $(function(){
 			var courseList = new CourseList([], {subject: e.target.value});
 			var courseListView = new CourseListView({collection: courseList});
 			courseList.fetch({reset:true});
-		}
-	});
-
-	var SubjectView = Backbone.View.extend({
-		tagName: "option",
-		render: function () {
-			this.$el.html(this.model.attributes.subject);
-			return this;
-		},
-	});
-
-	var CourseListView = Backbone.View.extend({
-		tagName: "table",
-		className: "table table-striped",
-		initialize: function() {
-			this.collection.bind("reset", this.render,this);
-		},
-		render: function () {
-			var courseList = _.uniq(this.collection.models, function (model) {
-				return model.attributes.catalog_number; 
-			});
-			var els = [];
-			_.each(courseList, function (item) {
-				var itemView= new CourseView({model:item});
-				els.push(itemView.render().el);
-			});
-			this.$el.html(els);
-			$("#courses").html(this.el);
 		}
 	});
 
@@ -102,66 +85,73 @@ $(function(){
 			this.$el.html(compiled);
 			return this;
 		},
+
 		showDetails: function () {
-			var CourseSchedule = new CourseSchedule([], {subject: this.model.attributes.subject, catalog_number: this.model.attributes.catalog_number});
+			$("#courseInfo").html(this.model.attributes.subject + this.model.attributes.catalog_number + this.model.attributes.title);
+			var courseSchedule = new CourseSchedule([], {subject: this.model.attributes.subject, catalog_number: this.model.attributes.catalog_number});
 			var courseScheduleView = new CourseScheduleView({collection: courseSchedule});
 			courseSchedule.fetch({reset:true});
 		},
 		addToList: function() {
-			listToSave.add(this.model);
+			customList.add(this.model);
 		}
 	});
 
-	var CourseDetailView = Backbone.View.extend({
+	var CourseListView = Backbone.View.extend({
 		tagName: "table",
-		className: "table table-striped",
+		className: "table table-hover",
 		initialize: function() {
 			this.collection.bind("reset", this.render,this);
 		},
 		render: function () {
+			var courseList = _.uniq(this.collection.models, function (model) {
+				return model.attributes.catalog_number; 
+			});
+			courseList = _.sortBy(courseList, function(model){
+				return model.attributes.catalog_number;
+			});
 			var els = [];
-			this.collection.each(function (item) {
-				var itemView = new DetailView({model:item});
+			_.each(courseList, function (item) {
+				var itemView= new CourseView({model:item});
 				els.push(itemView.render().el);
 			});
 			this.$el.html(els);
-			$("#details").html(this.el);
+			$("#courses").html(this.el);
 		}
 	});
 
-	var DetailView = Backbone.View.extend({
+	var ClassView = Backbone.View.extend({
 		tagName: "table",
 		className: "table table-striped",
 		render: function () {
-			var template = $("#template1").html();
+			var headerTemplate = $("#template-detailheader").html();
+			var dataTemplate = $("#template-detaildata").html();
 			var els = []
+			var compiled = _.template(headerTemplate, this.model.attributes);
+			els.push(compiled);
 			_.each(this.model.attributes.classes, function (item) {
-				var compiled = _.template(template, item);
+				var compiled = _.template(dataTemplate, item);
 				els.push(compiled);
 			});
+		
 			this.$el.html(els);
 			return this;
 		}
 	});
 
-	// list view for save
-	var ListView = Backbone.View.extend({
-		tagName: "table",
-		className: "table table-striped",
+	var CourseScheduleView = Backbone.View.extend({
+		tagName: "tr",
 		initialize: function() {
 			this.collection.bind("reset", this.render,this);
-			this.collection.bind("add", this.render,this);
-			this.collection.bind("remove", this.render,this);
-			this.collection.bind("all", this.render.this);
 		},
 		render: function () {
 			var els = [];
 			this.collection.each(function (item) {
-				var itemView = new ItemView({model:item});
-				els.push(view.render().el);
+				var itemView = new ClassView({model:item});
+				els.push(itemView.render().el);
 			});
 			this.$el.html(els);
-			$("#list").append(this.el);
+			$("#scheduleTable").html(this.el);
 		}
 	});
 
@@ -178,13 +168,35 @@ $(function(){
 			return this;
 		},
 		showDetails: function () {
-			var courseDetail = new CourseSchedule([], {subject: this.model.attributes.subject, catalog_number: this.model.attributes.catalog_number});
-			var courseDetailView = new CourseDetailView({collection: courseDetail});
-			courseDetail.fetch({reset:true});
+			$("#courseName").html(this.model.attributes.subject + this.model.attributes.catalog_number);
+			$("#courseTitle").html(this.model.attributes.title);
+			var courseSchedule = new CourseSchedule([], {subject: this.model.attributes.subject, catalog_number: this.model.attributes.catalog_number});
+			var courseScheduleView = new CourseScheduleView({collection: courseSchedule});
+			courseSchedule.fetch({reset:true});
 		},
 		deleteFromList: function() {
-			this.model.destroy();
-			listToSave.remove(this.model);
+			//this.model.destroy();
+			customList.remove(this.model);
+		}
+	});
+
+	var ListView = Backbone.View.extend({
+		tagName: "table",
+		className: "table table-hover",
+		initialize: function() {
+			this.collection.bind("reset", this.render,this);
+			this.collection.bind("add", this.render,this);
+			this.collection.bind("remove", this.render,this);
+			this.collection.bind("all", this.render.this);
+		},
+		render: function () {
+			var els = [];
+			this.collection.each(function (item) {
+				var itemView = new ItemView({model:item});
+				els.push(itemView.render().el);
+			});
+			this.$el.html(els);
+			$("#list").append(this.el);
 		}
 	});
 
@@ -203,24 +215,49 @@ $(function(){
 		},
 		saveList: function() {
 			var name = prompt("Please enter a name");
-			localStorage.setItem(name, todolist);
+			var Lt = Backbone.Collection.extend({
+				localStorage: new Backbone.LocalStorage(name)
+			});
+			var lt = new Lt;
+			customList.each(function (item) {
+				lt.create({subject:item.attributes.subject, catalog_number:item.attributes.catalog_number, title: item.attributes.title});
+			});
+			localStorage.setItem("listofname", [name]);
+
 		},
 		loadList: function () {
-			
+			var name = prompt("Please enter a name");
+			var Lt = Backbone.Collection.extend({
+				localStorage: new Backbone.LocalStorage(name)
+			});
+			customList.reset();
+			var lt = new Lt;
+			lt.fetch({
+				success: function(){
+					lt.each(function (item) {
+						customList.add(item);
+					});
+				}
+			});
 		}
 	})
 
+	
 	var AppView = Backbone.Collection.extend({
 		initialize: function () {
 			var subjectList = new SubjectList();
 			var subjectListView = new SubjectListView({collection:subjectList});
 			subjectList.fetch({reset:true});
-		
-			var btnView = new ButtonView();
+			var listView = new ListView({collection: customList});
+			var btnView = new ButtonView;
+		},
+		events: {
+			"click #btnSave": "saveToList"
+		},
+		saveToList: function () {
+			alert("yes!!");
 		}
 	});
-	
-	
+
 	var appView = new AppView();
 });
-
