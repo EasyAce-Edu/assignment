@@ -1,0 +1,259 @@
+
+<style type="text/css">
+  .timeline {
+    list-style: none;
+    padding: 20px 0 20px;
+    position: relative;
+}
+
+    .timeline:before {
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        content: "";
+        width: 3px;
+        background-color: #eeeeee;
+        left: 50%;
+        margin-left: -1.5px;
+    }
+
+    .timeline > li {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+        .timeline > li:before,
+        .timeline > li:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline > li:after {
+            clear: both;
+        }
+
+        .timeline > li:before,
+        .timeline > li:after {
+            content: " ";
+            display: table;
+        }
+
+        .timeline > li:after {
+            clear: both;
+        }
+
+        .timeline > li > .timeline-panel {
+            width: 46%;
+            float: left;
+            border: 1px solid #d4d4d4;
+            border-radius: 2px;
+            padding: 20px;
+            position: relative;
+            -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+        }
+            .timeline > li > .timeline-panel:before {
+                position: absolute;
+                top: 26px;
+                right: -15px;
+                display: inline-block;
+                border-top: 15px solid transparent;
+                border-left: 15px solid #ccc;
+                border-right: 0 solid #ccc;
+                border-bottom: 15px solid transparent;
+                content: " ";
+            }
+
+            .timeline > li > .timeline-panel:after {
+                position: absolute;
+                top: 27px;
+                right: -14px;
+                display: inline-block;
+                border-top: 14px solid transparent;
+                border-left: 14px solid #fff;
+                border-right: 0 solid #fff;
+                border-bottom: 14px solid transparent;
+                content: " ";
+            }
+
+        .timeline > li > .timeline-badge {
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            font-size: 1.4em;
+            text-align: center;
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            margin-left: -25px;
+            background-color: #999999;
+            z-index: 100;
+            border-top-right-radius: 50%;
+            border-top-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+        }
+
+        .timeline > li.timeline-inverted > .timeline-panel {
+            float: right;
+        }
+
+            .timeline > li.timeline-inverted > .timeline-panel:before {
+                border-left-width: 0;
+                border-right-width: 15px;
+                left: -15px;
+                right: auto;
+            }
+
+            .timeline > li.timeline-inverted > .timeline-panel:after {
+                border-left-width: 0;
+                border-right-width: 14px;
+                left: -14px;
+                right: auto;
+            }
+
+.timeline-title {
+    margin-top: 0;
+    color: inherit;
+    font-weight:bold;
+}
+
+.timeline-body > p,
+.timeline-body > ul {
+    margin-bottom: 0;
+}
+
+    .timeline-body > p + p {
+        margin-top: 5px;
+    }
+
+@media (max-width: 767px) {
+    ul.timeline:before {
+        left: 40px;
+    }
+
+    ul.timeline > li > .timeline-panel {
+        width: calc(100% - 90px);
+        width: -moz-calc(100% - 90px);
+        width: -webkit-calc(100% - 90px);
+    }
+
+    ul.timeline > li > .timeline-badge {
+        left: 15px;
+        margin-left: 0;
+        top: 16px;
+    }
+
+    ul.timeline > li > .timeline-panel {
+        float: right;
+    }
+
+        ul.timeline > li > .timeline-panel:before {
+            border-left-width: 0;
+            border-right-width: 15px;
+            left: -15px;
+            right: auto;
+        }
+
+        ul.timeline > li > .timeline-panel:after {
+            border-left-width: 0;
+            border-right-width: 14px;
+            left: -14px;
+            right: auto;
+        }
+}
+
+img.pic{
+  height: 50%;
+  width: 80%;
+}
+</style>
+<div class="container">
+    <div class="page-header">
+        <h1 id="timeline">About Me</h1>
+        <p><i class="fa fa-linkedin-square"></i> My Linkedin: <a href="https://www.linkedin.com/in/jingtao06">https://www.linkedin.com/in/jingtao06</a></p>
+    </div>
+    <ul class="timeline">
+        <li>
+          <div class="timeline-badge"><i class="fa fa-star-o"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">1994</h4>
+            </div>
+            <div class="timeline-body">
+              <p>Born in Shanghai</p>
+              <img class="pic"  src="./template/Shanghai.jpg"  alt="shanghai" />
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge"><i class="fa fa-graduation-cap"></i></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">2010</h4>
+            </div>
+            <div class="timeline-body">
+              <p style="font-weight:600;">Shanghai Fu Xing High School</p>
+              <p>Member of VEX Robotics club and school Basketball team</p>
+              <img class="pic"  src="./template/fuxing.jpg"  alt="fuxing" />
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-badge"><i class="fa fa-graduation-cap"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">2012</h4>
+            </div>
+            <div class="timeline-body">
+              <p style="font-weight:600;">Bronte College of Canada</p>
+              <p>Came to Canada and finished Grade 12 in Bronte College with an average of 89<br>School champion of Euclid Mathematical Contest and Canadian Computing Contest</p>
+              <img class="pic"  src="./template/bronte.jpg"  alt="bronte" />
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge"><i class="fa fa-university"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">2013</h4>
+            </div>
+            <div class="timeline-body">
+              <p style="font-weight:600;">University of Waterloo</p>
+              <p>Major in Computer Science with a major average of 91</p>
+              <img class="pic"  src="./template/uw.jpg"  alt="uw" />
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="timeline-badge info"><i class="fa fa-cogs"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">2015 Spring</h4>
+            </div>
+            <div class="timeline-body">
+              <p style="font-weight:600;">Baixing.com</p>
+              <p>• Designed and created web applications using Html, CSS, AngularJS and JQuery
+              <br>• Wrote Python scripts to retrieve, analyse Data and send Emails.
+              <br>• Worked with PostgreSql, MySql and MongoDB
+              <br>• Created Restful APIs with Python Flask, MongoDB and PostgreSql
+              <br>• Created spiders using Scrapy</p>
+              <img class="pic"  src="./template/bxw.jpg"  alt="bxw" />
+            </div>
+          </div>
+        </li>
+        <li class="timeline-inverted">
+          <div class="timeline-badge success"><i class="fa fa-comments-o"></i></div>
+          <div class="timeline-panel">
+            <div class="timeline-heading">
+              <h4 class="timeline-title">2015 Fall</h4>
+              <p>Looking forward to hearing from you</p>
+            </div>
+            <div class="timeline-body">
+              <p></p>
+            </div>
+          </div>
+        </li>
+    </ul>
+</div>
