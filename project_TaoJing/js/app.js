@@ -3,10 +3,11 @@ require(['static/text!./template/home.html',
 	'static/text!./template/info.html',
 	'static/text!./template/info_view.html',
 	'static/text!./template/Credits.html',
+	'static/text!./template/Resume.html',
 	'static/text!./template/AboutMe.html',
 	'static/text!./template/loading.html',
 	'static/text!./template/error.html'],
- function (homeTpl,CorTpl,InfoTpl,InfoDtl,CdtTpl,AbtTpl,LodTpl,ErrTpl) {
+ function (homeTpl,CorTpl,InfoTpl,InfoDtl,CdtTpl,ResTpl,AbtTpl,LodTpl,ErrTpl) {
 	
 	var ApplicationRouter = Backbone.Router.extend({
 		routes: {
@@ -14,6 +15,7 @@ require(['static/text!./template/home.html',
 			"Schedule":"schedule",
 			"CourseInfo":"CourseInfo",
 			"Credits":"Credits",
+			"Resume":"Resume",
 			"AboutMe":"AboutMe",
 			"CourseInfo/:id":"CourseInfo_id"
 		},
@@ -46,6 +48,10 @@ require(['static/text!./template/home.html',
 		Credits:function(){
 			this.credits = new CreditsView();
 			this.credits.render();
+		},
+		Resume:function(){
+			this.me = new Resume();
+			this.me.render();
 		},
 		AboutMe:function(){
 			this.me = new AboutMe();
@@ -86,6 +92,14 @@ require(['static/text!./template/home.html',
 	var CreditsView = Backbone.View.extend({
 		el: "#content",
 		template: CdtTpl,
+		render: function() {
+			this.$el.html(_.template(this.template));
+		}
+	})
+	//Resume
+	var Resume = Backbone.View.extend({
+		el: "#content",
+		template: ResTpl,
 		render: function() {
 			this.$el.html(_.template(this.template));
 		}
@@ -354,6 +368,7 @@ require(['static/text!./template/home.html',
 		m.set({text:'<footer  class="text-center" id="footer">&copy:Tao Jing <a href="https://uwaterloo.ca/" target="_blank">Uwaterloo.ca</a></br>Current time: '+new Date().toString()+'</footer>'});
 	},1000)
 
+	$(".material-icons").html("<i class='fa fa-bars'></i>")
 	var app = new ApplicationRouter();
 	Backbone.history.start();
 });
