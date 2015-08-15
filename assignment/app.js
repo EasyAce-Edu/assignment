@@ -10,7 +10,7 @@ $(function (){
 
 	});
 
-	// course select - select table
+	// course select - course table
 	var CourseList = Backbone.Collection.extend({
 
 		initialize: function (models, options) {
@@ -47,7 +47,9 @@ $(function (){
 
 	// course list - list of name
 	var ListOfName = Backbone.Collection.extend({
+
 		localStorage: new Backbone.LocalStorage("listOfName")
+
 	});
 
 	// course select - dropdown option
@@ -56,7 +58,7 @@ $(function (){
 		tagName: "option",
 
 		render: function () {
-			this.$el.html(this.model.subject);
+			this.$el.html(this.model.get("subject"));
 			return this;
 		}
 	});
@@ -76,12 +78,12 @@ $(function (){
 
 		render: function () {
 			var array = _.uniq(this.collection.models, function (model) {
-				return model.attributes.subject; 
+				return model.get("subject"); 
 			});
 
 			var els = [];
 			_.each(array, function (item) {
-				var itemView= new SubjectView({model:item.attributes});
+				var itemView= new SubjectView({model:item});
 				els.push(itemView.render().el);
 			});
 
@@ -101,7 +103,7 @@ $(function (){
 
 	});
 
-	// course select - select table row
+	// course select - course table row
 	var CourseView = Backbone.View.extend({
 
 		tagName: "tr",
@@ -114,13 +116,13 @@ $(function (){
 		},
 
 		render: function () {
-			this.$el.html(this.template(this.model.attributes));
+			this.$el.html(this.template(this.model.toJSON()));
 			return this;
 		},
 
 		showSchedule: function () {
-			$("#courseInfo").html(_.template('<%=subject%> <%=catalog_number%> - <%=title%>', this.model.attributes));
-			var courseSchedule = new CourseSchedule([], {subject: this.model.attributes.subject, catalog_number: this.model.attributes.catalog_number});
+			$("#courseInfo").html(_.template('<%=subject%> <%=catalog_number%> - <%=title%>', this.model.toJSON()));
+			var courseSchedule = new CourseSchedule([], this.model.toJSON());
 			var courseScheduleView = new CourseScheduleView({collection: courseSchedule});
 			courseSchedule.fetch({
 				reset:true,
@@ -132,11 +134,12 @@ $(function (){
 
 		addToList: function() {
 			customList.add(this.model);
+			$('#alert').text("Unsaved");
 		}
 
 	});
 
-	// course select - select table
+	// course select - course table
 	var CourseListView = Backbone.View.extend({
 
 		el: "#selectTable",
@@ -147,10 +150,10 @@ $(function (){
 
 		render: function () {
 			var array = _.uniq(this.collection.models, function (model) {
-				return model.attributes.catalog_number; 
+				return model.get("catalog_number"); 
 			});
 			array = _.sortBy(array, function(model){
-				return model.attributes.catalog_number;
+				return model.get("catalog_number");
 			});
 
 			var els = [];
@@ -199,8 +202,8 @@ $(function (){
 		
 		render: function () {
 			var els = [];
-			this.collection.each(function (item) {
-				var itemView = new SectionView({model:item.attributes});
+			_.each(this.collection.models, function (model) {
+				var itemView = new SectionView({model:model.toJSON()});
 				els.push(itemView.render().el);
 			});
 			this.$el.html(els);
@@ -222,13 +225,13 @@ $(function (){
 		},
 
 		render: function () {
-			this.$el.html(this.template(this.model.attributes));
+			this.$el.html(this.template(this.model.toJSON()));
 			return this;
 		},
 
 		showSchedule: function () {
-			$("#courseInfo").html(_.template('<%=subject%> <%=catalog_number%> - <%=title%>', this.model.attributes));
-			var courseSchedule = new CourseSchedule([], {subject: this.model.attributes.subject, catalog_number: this.model.attributes.catalog_number});
+			$("#courseInfo").html(_.template('<%=subject%> <%=catalog_number%> - <%=title%>', this.model.toJSON()));
+			var courseSchedule = new CourseSchedule([], this.model.toJSON());
 			var courseScheduleView = new CourseScheduleView({collection: courseSchedule});
 			courseSchedule.fetch({
 				reset:true,
@@ -240,6 +243,7 @@ $(function (){
 
 		removeFromList: function() {
 			customList.remove(this.model);
+			$('#alert').text("Unsaved");
 		}
 
 	});
@@ -257,15 +261,14 @@ $(function (){
 
 		render: function () {
 			var els = [];
-			this.collection.each(function (item) {
-				var itemView = new ItemView({model:item});
+			_.each(this.collection.models, function (model) {
+				var itemView = new ItemView({model:model});
 				els.push(itemView.render().el);
 			});
 
 			this.$el.html(els);
 			this.$el.addClass("table table-hover");
-		}
-
+		},
 	});
 
 	// course list - load item
@@ -278,23 +281,28 @@ $(function (){
 		},
 
 		render: function () {
-			this.$el.html(_.template('<a href="#" id="listName"><%=name%></a>', this.model.attributes));
+			this.$el.html(_.template('<a href="#" id="listName"><%=name%></a>', this.model.toJSON()));
 			return this;
 		},
 
 		loadList: function () {
 			customList.reset();
 			var List = Backbone.Collection.extend({
-					localStorage: new Backbone.LocalStorage(this.model.attributes.name)
+					localStorage: new Backbone.LocalStorage(this.model.get("name"))
 				});
 			var list = new List;
 			list.fetch({
-				success: function (){
-					list.each(function (item){
-						customList.add(item.attributes.model);
+				success: function () {
+					_.each(list.models, function (model){
+						customList.add(model);
 					});
+				},
+				error: function () {
+					alert("Failed to load list");
 				}
 			});
+			$('#listHeader').text(this.model.get("name"));
+			$('#alert').text("Loaded");
 		}
 
 	});
@@ -320,7 +328,7 @@ $(function (){
 				els.push(itemView.render().el);
 			});
 
-			$('#nameList').append(els);
+			$('#nameList').html(els);
 		},
 
 		saveList: function() {
@@ -329,16 +337,27 @@ $(function (){
 				alert("please enter a name");
 			}
 			else {
-				var List = Backbone.Collection.extend({
-					localStorage: new Backbone.LocalStorage(value)
-				});
-				var list = new List;
-
-				customList.each(function (item) {
-					list.create({model: item});
+				var found = this.collection.find(function (model){
+					return model.get("name") === value;
 				});
 
-				//this.collection.create({name: value});
+				if(found === undefined){
+					var List = Backbone.Collection.extend({
+						localStorage: new Backbone.LocalStorage(value)
+					});
+					var list = new List;
+
+					_.each(customList.models, function (model) {
+						list.create(model.toJSON());
+					});
+
+					this.collection.create({name: value});
+					$('#listHeader').text(value);
+					$('#alert').text("Saved");
+				}
+				else {
+					alert("name already exists!");
+				}
 			}
 		}
 

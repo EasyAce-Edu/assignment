@@ -8,11 +8,11 @@
 	    <meta name="author" content="Shirley Wang" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script> 
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
+		<script type="text/javascript" src="js/underscore.min.js"></script>	    
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="js/backbone-min.js"></script>
 		<script type="text/javascript" src="js/backbone.localStorage-min.js"></script>
-		<script type="text/javascript" src="js/bootstrap.js"></script>	 		
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>	 		
 		<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
 
 		<script type="text/javascript" src="app.js"></script>
@@ -45,7 +45,7 @@
 			</div>
 
 			<div class="col-md-4" id="midContent">
-				<h3>New List</h3>
+				<h3 id="listHeader">New List</h3>
 				<nav class="navbar navbar-default" id="listNav">
 					<div class="container-fluid">
 						 <form class="navbar-form navbar-left">
@@ -61,12 +61,13 @@
 						    </li>
 						 </ul>
 			    	</div>
+			    	<p class="navbar-text pull-right" style="color:green" id="alert">Unsaved<p>
 				</nav>
 				<div id="listPane">
 					<table id="listTable"></table>
 				</div>
 			</div>
-
+			
 			<div class="col-md-4" id="rightContent">
 				<h3>Course Schedule</h3>
 				<div id="schedulePane">
