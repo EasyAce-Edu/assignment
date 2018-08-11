@@ -1,60 +1,54 @@
 $(function (){
+	var term = 1159;
+	var key = '138ff53a6ec91e06bc52ff9cfedb2780';
 	// course select - dropdown
 	var SubjectList = Backbone.Collection.extend({
-
-		url: 'https://api.uwaterloo.ca/v2/terms/1159/courses.json?key=138ff53a6ec91e06bc52ff9cfedb2780',
+		url: `https://api.uwaterloo.ca/v2/terms/${term}/courses.json?key=${key}`,
 
 		parse: function (response) {
 			return response.data;
 		}
-
 	});
 
 	// course select - course table
 	var CourseList = Backbone.Collection.extend({
-
 		initialize: function (models, options) {
 			this.subject = options.subject;
 		},
 
 		url: function () {
-			return 'https://api.uwaterloo.ca/v2/terms/1159/'+ this.subject + '/schedule.json?key=138ff53a6ec91e06bc52ff9cfedb2780';
+			return `https://api.uwaterloo.ca/v2/terms/${term}/${this.subject}/schedule.json?key=${key}`;
 		},
 
 		parse: function (response) {
 			return response.data;
 		}
-
 	});
 
 	// course schedule - schedule table
 	var CourseSchedule = Backbone.Collection.extend({
-
 		initialize: function(models, options) {
 			this.subject = options.subject;
 			this.catalog_number = options.catalog_number;
 		},
 
+		// has to a function, because it depends on this
 		url: function () {
-			return "https://api.uwaterloo.ca/v2/courses/" + this.subject + "/" + this.catalog_number +"/schedule.json?key=138ff53a6ec91e06bc52ff9cfedb2780";
+			return `https://api.uwaterloo.ca/v2/courses/${this.subject}/${this.catalog_number}/schedule.json?key=${key}`;
 		},
 
 		parse: function (response) {
 			return response.data;
 		}
-
 	});
 
 	// course list - list of name
 	var ListOfName = Backbone.Collection.extend({
-
 		localStorage: new Backbone.LocalStorage("listOfName")
-
 	});
 
 	// course select - dropdown option
 	var SubjectView = Backbone.View.extend({
-
 		tagName: "option",
 
 		render: function () {
@@ -65,7 +59,6 @@ $(function (){
 
 	// course select - dropdownlist
 	var SubjectListView = Backbone.View.extend({
-
 		el: "#dropdown",
 
 		events: {
@@ -100,7 +93,6 @@ $(function (){
 				}
 			});
 		}
-
 	});
 
 	// course select - course table row
@@ -121,7 +113,7 @@ $(function (){
 		},
 
 		showSchedule: function () {
-			$("#courseInfo").html(_.template('<%=subject%> <%=catalog_number%> - <%=title%>', this.model.toJSON()));
+			$("#courseInfo").html(_.template('<%=subject%> <%=catalog_number%> - <%=title%>')(this.model.toJSON()));
 			var courseSchedule = new CourseSchedule([], this.model.toJSON());
 			var courseScheduleView = new CourseScheduleView({collection: courseSchedule});
 			courseSchedule.fetch({
@@ -178,10 +170,10 @@ $(function (){
 			var dataTemplate = $("#scheduleData-template").html();
 			
 			var els = []
-			els.push(_.template(headerTemplate, this.model)); // add header
+			els.push(_.template(headerTemplate)(this.model)); // add header
 
 			_.each(this.model.classes, function (item) {
-				els.push(_.template(dataTemplate, item));
+				els.push(_.template(dataTemplate)(item));
 			});
 		
 			this.$el.html(els);
@@ -230,7 +222,7 @@ $(function (){
 		},
 
 		showSchedule: function () {
-			$("#courseInfo").html(_.template('<%=subject%> <%=catalog_number%> - <%=title%>', this.model.toJSON()));
+			$("#courseInfo").html(_.template('<%=subject%> <%=catalog_number%> - <%=title%>')(this.model.toJSON()));
 			var courseSchedule = new CourseSchedule([], this.model.toJSON());
 			var courseScheduleView = new CourseScheduleView({collection: courseSchedule});
 			courseSchedule.fetch({
@@ -281,7 +273,7 @@ $(function (){
 		},
 
 		render: function () {
-			this.$el.html(_.template('<a href="#" id="listName"><%=name%></a>', this.model.toJSON()));
+			this.$el.html(_.template('<a href="#" id="listName"><%=name%></a>')(this.model.toJSON()));
 			return this;
 		},
 

@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="utf-8" />
-	    <title>Course Selector</title>
+	    <title>UW Course Selector</title>
 	    <meta name="description" content="Front-end web dev assignment" />
 	    <meta name="author" content="Shirley Wang" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,39 +13,36 @@
 		<script type="text/javascript" src="js/backbone-min.js"></script>
 		<script type="text/javascript" src="js/backbone.localStorage.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>	 		
-		<link type="text/css" rel="stylesheet" href="css/bootstrap.css" />
-
 		<script type="text/javascript" src="app.js"></script>
+
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+		<link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
 		<link rel="stylesheet" type="text/css" href="app.css">
 	</head>
 	
-	<body style="height:100%">
+	<body style="height:100%; background-color: #f8f9fa">
 		<!-- header -->
-		<header class="navbar navbar-default">
-			<div class="container">
-			    <div class="navbar-header">
-			     	<h2>Course Selector</h2>
-			    </div>
-			</div>
+		<header class="navbar navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">UW Course Selector</a>
 		</header>
 
 		<!-- content -->
 		<div class="row" id="content">
+			<!-- course subject -->
 			<div class="col-md-4" id="leftContent">
-				<h3>Course Select</h3>
+				<h5>Course Subject</h5>
 				<div class="form-group">
-					<label>Course Subject (Required)</label>
 					<select class="form-control" id="dropdown">
 						<option disabled selected>subject</option>
 					</select>
 				</div>
 				<div id="selectPane">
-					<table id="selectTable"></table>
+					<table class="table" id="selectTable"></table>
 				</div>
 			</div>
 
 			<div class="col-md-4" id="midContent">
-				<h3 id="listHeader">New List</h3>
+				<h5 id="listHeader">New List</h5>
 				<nav class="navbar navbar-default" id="listNav">
 					<div class="container-fluid">
 						 <form class="navbar-form navbar-left">
@@ -69,7 +66,7 @@
 			</div>
 			
 			<div class="col-md-4" id="rightContent">
-				<h3>Course Schedule</h3>
+				<h5>Course Schedule</h5>
 				<div id="schedulePane">
 					<h4 id="courseInfo"></h4>
 					<table id="scheduleTable"></table>
@@ -87,12 +84,12 @@
     	<!-- templates -->
 		<script id="courseAdd-template" type="text/html">
 			<td><a href="#" id="courseName"><%=subject%> <%=catalog_number%></a> - <%=title%></td>
-			<td><a href="#" id="btnAdd"><i class="glyphicon glyphicon-plus"></i></a></td>
+			<td><a href="#" id="btnAdd"><i class="fa fa-plus" aria-hidden="true"></i></a></td>
 		</script>
 
 		<script id="courseRemove-template" type="text/html">
 			<td><a href="#" id="courseName"><%=subject%> <%=catalog_number%></a> - <%=title%></td>
-			<td><a href="#" id="btnRemove"><i class="glyphicon glyphicon-minus"></i></a></td>
+			<td><a href="#" id="btnRemove"><i class="fa fa-minus" aria-hidden="true"></i></a></td>
 		</script>
 
 		<script id="scheduleHeader-template" type="text/html">

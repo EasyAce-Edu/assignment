@@ -1,23 +1,30 @@
 /* content */
 #leftContent {
   border-right:1px solid #dddddd;
-  height: 800px;
+  height: 810px;
+  padding: 30px;
 }
 
 #midContent {
   height: 800px;
+  padding: 30px;
 }
 
 #rightContent {
   border-left:1px solid #dddddd; 
   height: 800px;
+  padding: 30px;
 }
 
-#selectPane{
+#selectPane {
   max-height: 700px;
-  margin-left: 30px;
-  margin-right: 30px;
   overflow: auto;
+  background-color: #ffffff
+}
+
+/* overwrite bootstrap */
+.table {
+  margin-bottom: 0px;
 }
 
 #listPane {
@@ -52,5 +59,6 @@
   margin-top: 15px;
   padding-top: 15px;
   border-top: 1px solid #eeeeee;
+  
 }
 
