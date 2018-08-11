@@ -1,6 +1,19 @@
 $(function (){
 	var term = 1159;
 	var key = '138ff53a6ec91e06bc52ff9cfedb2780';
+	// var Workspace = Backbone.Router.extend({
+	// 	routes: {
+	// 		"": "handleRoute1",
+	// 		"view1": "handleRoute2",   
+	// 	},
+
+	// 	handleRoute2: function() {
+	// 		console.log('calendar');
+	// 	},
+	// });
+	// var router = new Workspace();
+	// Backbone.history.start({});
+
 	// course select - dropdown
 	var SubjectList = Backbone.Collection.extend({
 		url: `https://api.uwaterloo.ca/v2/terms/${term}/courses.json?key=${key}`,
@@ -162,8 +175,14 @@ $(function (){
 
 	// course schedule - course section
 	var SectionView = Backbone.View.extend({
-
 		tagName: "table",
+		events: {
+			"click #addSection" : "addToCalendar",
+		},
+		
+		// addToCalendar: function () {
+		// 	router.navigate('view1');
+		// },
 		
 		render: function () {
 			var headerTemplate = $("#scheduleHeader-template").html();
@@ -177,16 +196,15 @@ $(function (){
 			});
 		
 			this.$el.html(els);
-			this.$el.addClass("table table-striped");
+			this.$el.addClass("table section");
 			return this;
 		}
-
 	});
 
 	// course schedule - schedule table
 	var CourseScheduleView = Backbone.View.extend({
 
-		tagName: "tr",
+		tagName: "div",
 		
 		initialize: function() {
 			this.collection.bind("reset", this.render,this);

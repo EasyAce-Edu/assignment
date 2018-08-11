@@ -41,7 +41,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-4" id="midContent">
+			<!-- <div class="col-md-4" id="midContent">
 				<h5 id="listHeader">New List</h5>
 				<nav class="navbar navbar-default" id="listNav">
 					<div class="container-fluid">
@@ -63,13 +63,13 @@
 				<div id="listPane">
 					<table id="listTable"></table>
 				</div>
-			</div>
+			</div> -->
 			
-			<div class="col-md-4" id="rightContent">
-				<h5>Course Schedule</h5>
+			<div class="col-md-8" id="rightContent">
+				<!-- <h5>Course Schedule</h5> -->
 				<div id="schedulePane">
 					<h4 id="courseInfo"></h4>
-					<table id="scheduleTable"></table>
+					<div id="scheduleTable"></div>
 				</div>
 			</div>
 		</div>
@@ -93,8 +93,13 @@
 		</script>
 
 		<script id="scheduleHeader-template" type="text/html">
-			<tr class="scheduleHeader">
-				<th colspan="4" style="background-color:rgb(217, 245, 253);">Section: <%=section%></th>
+			<tr>
+				<th colspan="4" class="sectionName">
+					<span id="sectionNameText">Section: <%=section%><span>
+					<a href="#" id="addSection">
+						<i class="fa fa-plus-circle plusIcon" aria-hidden="true"></i>
+					</a>
+				</th>
 			</tr>
 			<tr class="scheduleHeader">
 				<th>Days & Times</th>

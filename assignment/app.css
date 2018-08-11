@@ -12,7 +12,7 @@
 
 #rightContent {
   border-left:1px solid #dddddd; 
-  height: 800px;
+  height: 810px;
   padding: 30px;
 }
 
@@ -25,6 +25,7 @@
 /* overwrite bootstrap */
 .table {
   margin-bottom: 0px;
+  border-top-style: none;
 }
 
 #listPane {
@@ -41,7 +42,7 @@
 }
 
 #courseInfo {
-  color: #3A87AD;
+  color: #6285FB;
 }
 
 #scheduleTable {
@@ -53,12 +54,39 @@
   width: 135px;
 }
 
+.section {
+  background-color: #ffffff;
+  border-radius: 25px;
+  margin-bottom: 15px;
+}
+
+.sectionName {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-top: 0px !important;
+  background-color: #6285FB;
+  color: #ffffff;
+}
+
+#sectionNameText {
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+.plusIcon {
+  float: right;
+  margin-right: 30px;
+  font-size: 25px;
+}
+#addSection {
+  color: white;
+}
+
 /* footer */
 #footer {
   text-align: center;
   margin-top: 15px;
   padding-top: 15px;
-  border-top: 1px solid #eeeeee;
-  
+  border-top: 1px solid #eeeeee; 
 }
 
